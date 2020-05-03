@@ -1,22 +1,6 @@
 # Expert-System Chat Bot
 Trivial expert system to diagnose computer related problems.
-
-###########################################################################################                                                                      
-#	  ,----..    ,---,                   ___                ,---,.               ___      #
-#	 /   /   \ ,--.' |                 ,--.'|_            ,'  .'  \            ,--.'|_    #
-#	|   :     :|  |  :                 |  | :,'         ,---.' .' |   ,---.    |  | :,'   #
-#	.   |  ;. /:  :  :                 :  : ' :         |   |  |: |  '   ,'\   :  : ' :   #
-#	.   ; /--` :  |  |,--.  ,--.--.  .;__,'  /          :   :  :  / /   /   |.;__,'  /    #
-#	;   | ;    |  :  '   | /       \ |  |   |           :   |    ; .   ; ,. :|  |   |     #
-#	|   : |    |  |   /' :.--.  .-. |:__,'| :           |   :     \'   | |: ::__,'| :     #
-#	.   | '___ '  :  | | | \__\/: . .  '  : |__         |   |   . |'   | .; :  '  : |__   #
-#	'   ; : .'||  |  ' | : ," .--.; |  |  | '.'|        '   :  '; ||   :    |  |  | '.'|  #
-#	'   | '/  :|  :  :_:,'/  /  ,.  |  ;  :    ;        |   |  | ;  \   \  /   ;  :    ;  #
-#	|   :    / |  | ,'   ;  :   .'   \ |  ,   /         |   :   /    `----'    |  ,   /   #
-#	 \   \ .'  `--''     |  ,     .-./  ---`-'          |   | ,'                ---`-'    #
-#	  `---`               `--`---'                      `----'                            #
-###########################################################################################     
-
+                                                                  
 The program is designed to work as an expert system chat bot. The program was designed not using an expert system shell for a class project. There are more efficient ways to solve this problem
 
 The knowledge base is an XML file in the "bin" folder. In theory any knowedge base that follows this format can be used.
