@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<knowledge>
+	<title>Whats wrong with my computer?</title>
+	<description></description>
+	<!--
+	These are different goals to reach
+	-->
+	<goals name="issue">
+		<goal goal='0'>computer wont turn on</goal>
+		<goal goal='1'>Operating system wont load</goal>
+		<goal goal='2'>Computer has no display</goal>
+		<goal goal='3'>Computer does not POST</goal>
+		<goal goal='4'>Computer is slow</goal>
+		<goal goal='5'>I dont know what is wrong with the computer sorry</goal>
+	</goals>
+	
+	<!-- # # # # # RULES (Computer wont turn on # # # # # -->
+	<rule id='1'>
+		<goal goal='0'>goal 0</goal>
+		<description>Computer is not plugged in</description>
+			<if>
+				<fact name="plugged">no</fact>
+			</if>
+			<then>
+				<fact name="do">Plug in the computer</fact>
+			</then>
+	</rule>
+	
+	<rule id='2'>
+		<goal goal='0'>goal 0</goal>
+		<description>Power supply needs to be replaced</description>
+			<if>
+				<and>
+					<fact name="beeps">no</fact>
+					<fact name="fans">no</fact>
+					<fact name="plugged">yes</fact>
+					<fact name="outlet">yes</fact>
+					<fact name="voltage">yes</fact>
+				</and>
+			</if>
+			<then>
+				<fact name="do">Replace the power supply</fact>
+			</then>
+	</rule>
+	
+	<rule id='3'>
+		<goal goal='0'>goal 0</goal>
+		<description>The outlet dosen't work</description>
+			<if>
+				<fact name="outlet">no</fact>
+			</if>
+			<then>
+				<fact name="do">Use a different outlet</fact>
+			</then>
+	</rule>
+	
+	<rule id='4'>
+		<goal goal='0'>goal 0</goal>
+		<description>The voltage selection is wrong</description>
+			<if>
+				<fact name="voltage">no</fact>
+			</if>
+			<then>
+				<fact name="do">Change the voltage to the correct setting.</fact>
+			</then>
+	</rule>
+
+	<!-- # # # # # RULES (Operating System wont load) # # # # # -->
+	
+	<rule id='5'>
+		<goal goal='1'>goal 1</goal>
+		<description>The Hard Drive clicks</description>
+			<if>
+				<fact name="click">yes</fact>
+			</if>
+			<then>
+				<fact name="do">Replace Hard Drive</fact>
+			</then>
+	</rule>
+	
+	<rule id='6'>
+		<goal goal='1'>goal 1</goal>
+		<description></description>
+			<if>
+				<and>
+					<fact name="click">no</fact>
+					<or>
+						<!--<fact name="powers">no</fact>-->
+						<fact name="post">no</fact>
+						<fact name="reboot">no</fact>
+					</or>
+				</and>
+			</if>
+			<then>
+				<fact do="name">Reinstall Operating system</fact>
+			</then>
+	</rule>
+	
+	<rule id='7'>
+		<goal goal='1'>goal 1</goal>
+		<description>Computer errors on boot</description>
+			<if>
+				<fact name="errors">yes</fact>
+			</if>
+			<then>
+				<fact name="do">Google errors to resolve issue</fact>
+			</then>
+			<elif>
+			</elif>
+	</rule>
+	
+	<rule id='8'>
+		<goal goal='1'>goal 1</goal>
+		<goal goal='3'>goal 3</goal>
+		<description>Computer has only been powered on once</description>
+			<if>
+				<fact name="reboot">no</fact>
+			</if>
+			<then>
+				<fact name="do">Reboot the computer</fact>
+			</then>
+	</rule> 
+	
+	<!-- # # # # # Rules (Computer has no display)-->
+	
+	<!-- Beep question-->
+
+	<rule id='9'>
+		<goal goal='2'>goal 2</goal>
+		<description>Monitor has no power</description>
+			<if>
+				<fact name="backlight">no</fact>
+			</if>
+			<then>
+				<fact name="do">Check power cable to the monitor</fact>
+			</then>
+	</rule>
+	
+	<rule id='10'>
+		<goal goal='2'>goal 2</goal>
+		<description>Computer has only been powered on oncce</description>
+			<if>
+				<and>
+					<fact name="backlight">yes</fact>
+					<fact name="splash">yes</fact>
+					<fact name="artifacts">yes</fact>
+				</and>
+			</if>
+			<then>
+				<fact name="do">replace video cable</fact>
+			</then>
+			<elif>
+				<fact name="do">replace video card</fact>
+			</elif>
+	</rule>
+
+	<rule id='11'>
+		<goal goal='2'>goal 2</goal>
+		<description>Video cable port</description>
+			<if>
+				<and>
+					<fact name="backlight">yes</fact>
+					<fact name="splash">yes</fact>
+					<fact name="videoCard">yes</fact>
+				</and>
+			</if>
+			<then>
+				<fact name="do">Make sure video cable is plugged into the right port on the video card</fact>
+			</then>
+	</rule>
+	
+	<rule id='13'>
+		<goal goal='2'>goal 2</goal>
+		<goal goal='3'>goal 3</goal>
+		<description>has beeps</description>
+			<if>
+				<fact name="beeps">yes</fact>
+			</if>
+			<then>
+				<fact name="do">Google the beep codes for the computer manufacturer</fact>
+			</then>
+	</rule>
+	
+	<!-- # # # # # Rules (Computer does not post) # # # # # -->
+
+	<!-- power rule -->
+	<!-- reboot rule -->
+	<rule id='13'>
+		<goal goal='3'>goal 3</goal>
+		<description>Components need to be reseated</description>
+			<if>
+				<fact name="reseated">no</fact>
+			</if>
+			<then>
+				<fact name="do">Reseat the components</fact>
+			</then>
+	</rule> 
+	
+	<rule id='14'>
+		<description>Component Issue</description>
+			<if>
+				<and>
+					<fact name="power">yes</fact>
+					<fact name="reseated">yes</fact>
+					<fact name="reboot">yes</fact>
+				</and>
+			</if>
+			<then>
+				<fact name="do">Possible component issue, replace CMOS, RAM, Motherboard (one at a time and recheck issue after each component is replaced)</fact>
+			</then>
+	</rule> 
+	<!-- # # # # # Rules (Computer is slow) # # # # # -->
+	
+	<rule id='15'>
+		<goal goal='4'>goal 4</goal>
+		<description>Hard Drive Fragmented</description>
+			<if>
+				<and>
+					<fact name="ssd">no</fact>
+					<fact name="fullHDD">no</fact>
+					<fact name="reboot">yes</fact>
+				</and>
+			</if>
+			<then>
+				<fact name="do">Defrag the computer</fact>
+			</then>
+	</rule> 
+	
+	<rule id='16'>
+		<goal goal='4'>goal 4</goal>
+		<description>The hard drive is full</description>
+			<if>
+				<fact name="fullHDD">yes</fact>
+			</if>
+			<then>
+				<fact name="do">Remove files and clena up the Hard Drive.</fact>
+			</then>
+	</rule> 
+	
+	<rule id='17'>
+		<goal goal='4'>goal 4</goal>
+		<description>The hard drive needs to be replaced</description>
+			<if>
+				<and>
+					<fact name="ssd">no</fact>
+					<fact name="fullHDD">no</fact>
+					<fact name="usage">yes</fact>
+				</and>
+			</if>
+			<then>
+				<fact name="do">Replace the hard drive.</fact>
+			</then>
+	</rule> 
+	
+	<rule id='18'>
+		<goal goal='4'>goal 4</goal>
+		<description>The computer is infected</description>
+			<if>
+				<fact name="infected">yes</fact>
+			</if>
+			<then>
+				<fact name="do">Clean up the malware/viruses on the computer</fact>
+			</then>
+	</rule> 
+	
+	
+	<!-- If issue is not resolved then reinstall OS-->
+	
+	<!-- # # # # # Questions # # # # # -->
+	<!-- Are to illicit facts-->
+		<!-- # # # # # Questions for goal 1 # # # # # -->
+	 
+	
+	<question>
+		<goal goal='0'>goal 0</goal>
+		<description>Is the computer plugged in?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="plugged">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="plugged">no</fact>
+			</then>
+		</option>
+	</question>
+	
+	<question>
+		<goal goal='0'>goal 0</goal>
+		<description>Is the outlet working?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="outlet">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="outlet">no</fact>
+			</then>
+		</option>
+	</question>
+			
+	<question>
+		<goal goal='0'>goal 0</goal>
+		<description>Is the correct voltage selected on the power supply?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="voltage">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="voltage">no</fact>
+			</then>
+		</option>
+	</question>	
+
+	<question>
+		<goal goal='0'>goal 0</goal>
+		<description>Do any fans turn on?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="fans">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="fans">no</fact>
+			</then>
+		</option>
+	</question>
+	
+		<!-- # # # # # Questions for goal 1 # # # # # -->
+	<!--<question>
+		<goal goal='1'>goal 1</goal>
+		<goal goal='3'>goal 3</goal>
+		<description>Does the computer turn on?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="powers">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="powers">no</fact>
+			</then>
+		</option>
+	</question>-->
+
+	<question>
+		<goal goal='1'>goal 1</goal>
+		<description>Does the computer POST successfully?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="post">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="post">no</fact>
+			</then>
+		</option>
+	</question>
+
+	<question>
+		<goal goal='1'>goal 1</goal>
+		<description>Does the Hard Drive click?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="click">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="click">no</fact>
+			</then>
+		</option>
+	</question>
+
+	<question>
+		<goal goal='1'>goal 1</goal>
+		<description>Are there any errors on boot?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="errors">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="errors">no</fact>
+			</then>
+		</option>
+	</question>
+	
+	<question>
+		<goal goal='1'>goal 1</goal>
+		<goal goal='3'>goal 3</goal>
+		<goal goal='4'>goal 4</goal>
+		<description>Have you tried to boot the computer more than once?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="reboot">yes</fact>
+			</then>
+		</option>
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="reboot">no</fact>
+			</then>
+		</option>
+	</question>
+
+		<!-- # # # # # Questions for goal 2 # # # # # -->
+	<question>
+		<goal goal='2'>goal 2</goal>
+		<description>Does the backlight turn on?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="backlight">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="backlight">no</fact>
+			</then>
+		</option>
+	</question>
+
+	<question>
+		<goal goal='2'>goal 2</goal>
+		<description>Does the splash screen appear?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="splash">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="splash">no</fact>
+			</then>
+		</option>
+	</question>
+
+	<question>
+		<goal goal='2'>goal 2</goal>
+		<description>Does the screen have artifacts</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="artifacts">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="artifacts">no</fact>
+			</then>
+		</option>
+	</question>
+
+	<question>
+		<goal goal='2'>goal 2</goal>
+		<description>Is there a seperate video card?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="videoCard">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="videoCard">no</fact>
+			</then>
+		</option>
+	</question>
+	<!-- Last question is if computer beeps
+			This is already a question. -->	
+			
+	<!-- # # # # # Questions for Goal 3 # # # # #-->	
+	
+	<!-- Another beep question -->
+	<!-- Power on question -->
+	<!-- Reboot Question -->
+	
+	<question>
+		<goal goal='3'>goal 3</goal>
+		<description>Have components been reseated?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="reseated">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="reseated">no</fact>
+			</then>
+		</option>
+	</question>
+	
+	
+		<!-- # # # # # Questions for Goal 4 # # # # #-->
+		
+		<!-- Reboot Question-->
+	
+	<question>
+		<goal goal='4'>goal 4</goal>
+		<description>Does the computer have a solid state hard drive?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="ssd">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="ssd">no</fact>
+			</then>
+		</option>
+	</question>
+	
+	<question>
+		<goal goal='4'>goal 4</goal>
+		<description>Is the Hard Drive Full?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="fullHDD">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="fullHDD">no</fact>
+			</then>
+		</option>
+	</question>
+	
+	<question>
+		<goal goal='4'>goal 4</goal>
+		<description>Is the Hard Drive usage at 100%?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="usage">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="usage">no</fact>
+			</then>
+		</option>
+	</question>
+	
+	<question>
+		<goal goal='4'>goal 4</goal>
+		<description>Does the computer have an viruses/malware?</description>
+		<option>
+			<description>yes</description>
+			<then>
+				<fact name="infected">yes</fact>
+			</then>
+		</option>
+		
+		<option>
+			<description>no</description>
+			<then>
+				<fact name="infected">no</fact>
+			</then>
+		</option>
+	</question>
+	
+</knowledge>
+
+	<!--
+	This was sample goal, just dont want to 
+	delete incase it is used later
+	
+	<goal id="2" name="OSWon'tLoad">
+		<fact> </fact>
+		<rule> </rule>
+	</goal>
+	-->
