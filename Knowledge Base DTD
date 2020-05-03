@@ -1,0 +1,22 @@
+<!DOCTYPE knowledge[
+  <!ELEMENT knowledge (goal+, rule+, question+)>
+    <!ELEMENT goal (answer+)>
+    <!ELEMENT answer (value)>
+  <!ELEMENT rule (id) >
+     <!ATTLIST rule id CDATA #REQUIRED>
+     <!ELEMENT description (#PCDATA)>
+     <!ELEMENT if (fact+)>
+        <!ELEMENT fact (#PCDATA)>
+        <!ATTLIST fact name CDATA #REQUIRED>
+     <!ELEMENT then (fact)>
+     <!ELEMENT fact (#PCDATA)>
+        <!ATTLIST fact name CDATA #REQUIRED>
+  <!ELEMENT question (goal+)>
+  <!ELEMENT goal (option+) >
+      <!ATTLIST goal id CDATA #REQUIRED>
+  <!ELEMENT description (#PCDATA) >
+  <!ELEMENT option (description, then)>
+      <!ELEMENT description (#PCDATA) >
+      <!ELEMENT then (fact)>
+          <!ELEMENT fact (#PCDATA) >
+              <!ATTLIST fact name CDATA #REQUIRED>
